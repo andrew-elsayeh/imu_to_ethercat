@@ -1,0 +1,225 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "heap.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.pvPortMalloc,"ax",%progbits
+  20              	 .align 2
+  21              	 .global pvPortMalloc
+  22              	 .thumb
+  23              	 .thumb_func
+  25              	pvPortMalloc:
+  26              	.LFB138:
+  27              	 .file 1 "../Dave/Generated/FREERTOS/heap_3.h"
+   1:../Dave/Generated/FREERTOS/heap_3.h **** /*
+   2:../Dave/Generated/FREERTOS/heap_3.h ****  * FreeRTOS Kernel V10.4.2
+   3:../Dave/Generated/FREERTOS/heap_3.h ****  * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+   4:../Dave/Generated/FREERTOS/heap_3.h ****  *
+   5:../Dave/Generated/FREERTOS/heap_3.h ****  * Permission is hereby granted, free of charge, to any person obtaining a copy of
+   6:../Dave/Generated/FREERTOS/heap_3.h ****  * this software and associated documentation files (the "Software"), to deal in
+   7:../Dave/Generated/FREERTOS/heap_3.h ****  * the Software without restriction, including without limitation the rights to
+   8:../Dave/Generated/FREERTOS/heap_3.h ****  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+   9:../Dave/Generated/FREERTOS/heap_3.h ****  * the Software, and to permit persons to whom the Software is furnished to do so,
+  10:../Dave/Generated/FREERTOS/heap_3.h ****  * subject to the following conditions:
+  11:../Dave/Generated/FREERTOS/heap_3.h ****  *
+  12:../Dave/Generated/FREERTOS/heap_3.h ****  * The above copyright notice and this permission notice shall be included in all
+  13:../Dave/Generated/FREERTOS/heap_3.h ****  * copies or substantial portions of the Software.
+  14:../Dave/Generated/FREERTOS/heap_3.h ****  *
+  15:../Dave/Generated/FREERTOS/heap_3.h ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  16:../Dave/Generated/FREERTOS/heap_3.h ****  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+  17:../Dave/Generated/FREERTOS/heap_3.h ****  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  18:../Dave/Generated/FREERTOS/heap_3.h ****  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  19:../Dave/Generated/FREERTOS/heap_3.h ****  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  20:../Dave/Generated/FREERTOS/heap_3.h ****  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  21:../Dave/Generated/FREERTOS/heap_3.h ****  *
+  22:../Dave/Generated/FREERTOS/heap_3.h ****  * https://www.FreeRTOS.org
+  23:../Dave/Generated/FREERTOS/heap_3.h ****  * https://github.com/FreeRTOS
+  24:../Dave/Generated/FREERTOS/heap_3.h ****  *
+  25:../Dave/Generated/FREERTOS/heap_3.h ****  * 1 tab == 4 spaces!
+  26:../Dave/Generated/FREERTOS/heap_3.h ****  */
+  27:../Dave/Generated/FREERTOS/heap_3.h **** 
+  28:../Dave/Generated/FREERTOS/heap_3.h **** 
+  29:../Dave/Generated/FREERTOS/heap_3.h **** /*
+  30:../Dave/Generated/FREERTOS/heap_3.h ****  * Implementation of pvPortMalloc() and vPortFree() that relies on the
+  31:../Dave/Generated/FREERTOS/heap_3.h ****  * compilers own malloc() and free() implementations.
+  32:../Dave/Generated/FREERTOS/heap_3.h ****  *
+  33:../Dave/Generated/FREERTOS/heap_3.h ****  * This file can only be used if the linker is configured to to generate
+  34:../Dave/Generated/FREERTOS/heap_3.h ****  * a heap memory area.
+  35:../Dave/Generated/FREERTOS/heap_3.h ****  *
+  36:../Dave/Generated/FREERTOS/heap_3.h ****  * See heap_1.c, heap_2.c and heap_4.c for alternative implementations, and the
+  37:../Dave/Generated/FREERTOS/heap_3.h ****  * memory management pages of https://www.FreeRTOS.org for more information.
+  38:../Dave/Generated/FREERTOS/heap_3.h ****  */
+  39:../Dave/Generated/FREERTOS/heap_3.h **** 
+  40:../Dave/Generated/FREERTOS/heap_3.h **** #include <stdlib.h>
+  41:../Dave/Generated/FREERTOS/heap_3.h **** 
+  42:../Dave/Generated/FREERTOS/heap_3.h **** /* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
+  43:../Dave/Generated/FREERTOS/heap_3.h ****  * all the API functions to use the MPU wrappers.  That should only be done when
+  44:../Dave/Generated/FREERTOS/heap_3.h ****  * task.h is included from an application file. */
+  45:../Dave/Generated/FREERTOS/heap_3.h **** #define MPU_WRAPPERS_INCLUDED_FROM_API_FILE
+  46:../Dave/Generated/FREERTOS/heap_3.h **** 
+  47:../Dave/Generated/FREERTOS/heap_3.h **** #include "FreeRTOS.h"
+  48:../Dave/Generated/FREERTOS/heap_3.h **** #include "task.h"
+  49:../Dave/Generated/FREERTOS/heap_3.h **** 
+  50:../Dave/Generated/FREERTOS/heap_3.h **** #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
+  51:../Dave/Generated/FREERTOS/heap_3.h **** 
+  52:../Dave/Generated/FREERTOS/heap_3.h **** #if ( configSUPPORT_DYNAMIC_ALLOCATION == 0 )
+  53:../Dave/Generated/FREERTOS/heap_3.h ****     #error This file must not be used if configSUPPORT_DYNAMIC_ALLOCATION is 0
+  54:../Dave/Generated/FREERTOS/heap_3.h **** #endif
+  55:../Dave/Generated/FREERTOS/heap_3.h **** 
+  56:../Dave/Generated/FREERTOS/heap_3.h **** /*-----------------------------------------------------------*/
+  57:../Dave/Generated/FREERTOS/heap_3.h **** 
+  58:../Dave/Generated/FREERTOS/heap_3.h **** void * pvPortMalloc( size_t xWantedSize )
+  59:../Dave/Generated/FREERTOS/heap_3.h **** {
+  28              	 .loc 1 59 0
+  29              	 .cfi_startproc
+  30              	 
+  31              	 
+  32 0000 80B5     	 push {r7,lr}
+  33              	.LCFI0:
+  34              	 .cfi_def_cfa_offset 8
+  35              	 .cfi_offset 7,-8
+  36              	 .cfi_offset 14,-4
+  37 0002 84B0     	 sub sp,sp,#16
+  38              	.LCFI1:
+  39              	 .cfi_def_cfa_offset 24
+  40 0004 00AF     	 add r7,sp,#0
+  41              	.LCFI2:
+  42              	 .cfi_def_cfa_register 7
+  43 0006 7860     	 str r0,[r7,#4]
+  60:../Dave/Generated/FREERTOS/heap_3.h ****     void * pvReturn;
+  61:../Dave/Generated/FREERTOS/heap_3.h **** 
+  62:../Dave/Generated/FREERTOS/heap_3.h ****     vTaskSuspendAll();
+  44              	 .loc 1 62 0
+  45 0008 FFF7FEFF 	 bl vTaskSuspendAll
+  63:../Dave/Generated/FREERTOS/heap_3.h ****     {
+  64:../Dave/Generated/FREERTOS/heap_3.h ****         pvReturn = malloc( xWantedSize );
+  46              	 .loc 1 64 0
+  47 000c 7868     	 ldr r0,[r7,#4]
+  48 000e FFF7FEFF 	 bl malloc
+  49 0012 0346     	 mov r3,r0
+  50 0014 FB60     	 str r3,[r7,#12]
+  65:../Dave/Generated/FREERTOS/heap_3.h ****         traceMALLOC( pvReturn, xWantedSize );
+  66:../Dave/Generated/FREERTOS/heap_3.h ****     }
+  67:../Dave/Generated/FREERTOS/heap_3.h ****     ( void ) xTaskResumeAll();
+  51              	 .loc 1 67 0
+  52 0016 FFF7FEFF 	 bl xTaskResumeAll
+  68:../Dave/Generated/FREERTOS/heap_3.h **** 
+  69:../Dave/Generated/FREERTOS/heap_3.h ****     #if ( configUSE_MALLOC_FAILED_HOOK == 1 )
+  70:../Dave/Generated/FREERTOS/heap_3.h ****         {
+  71:../Dave/Generated/FREERTOS/heap_3.h ****             if( pvReturn == NULL )
+  72:../Dave/Generated/FREERTOS/heap_3.h ****             {
+  73:../Dave/Generated/FREERTOS/heap_3.h ****                 extern void vApplicationMallocFailedHook( void );
+  74:../Dave/Generated/FREERTOS/heap_3.h ****                 vApplicationMallocFailedHook();
+  75:../Dave/Generated/FREERTOS/heap_3.h ****             }
+  76:../Dave/Generated/FREERTOS/heap_3.h ****         }
+  77:../Dave/Generated/FREERTOS/heap_3.h ****     #endif
+  78:../Dave/Generated/FREERTOS/heap_3.h **** 
+  79:../Dave/Generated/FREERTOS/heap_3.h ****     return pvReturn;
+  53              	 .loc 1 79 0
+  54 001a FB68     	 ldr r3,[r7,#12]
+  80:../Dave/Generated/FREERTOS/heap_3.h **** }
+  55              	 .loc 1 80 0
+  56 001c 1846     	 mov r0,r3
+  57 001e 1037     	 adds r7,r7,#16
+  58              	.LCFI3:
+  59              	 .cfi_def_cfa_offset 8
+  60 0020 BD46     	 mov sp,r7
+  61              	.LCFI4:
+  62              	 .cfi_def_cfa_register 13
+  63              	 
+  64 0022 80BD     	 pop {r7,pc}
+  65              	 .cfi_endproc
+  66              	.LFE138:
+  68              	 .section .text.vPortFree,"ax",%progbits
+  69              	 .align 2
+  70              	 .global vPortFree
+  71              	 .thumb
+  72              	 .thumb_func
+  74              	vPortFree:
+  75              	.LFB139:
+  81:../Dave/Generated/FREERTOS/heap_3.h **** /*-----------------------------------------------------------*/
+  82:../Dave/Generated/FREERTOS/heap_3.h **** 
+  83:../Dave/Generated/FREERTOS/heap_3.h **** void vPortFree( void * pv )
+  84:../Dave/Generated/FREERTOS/heap_3.h **** {
+  76              	 .loc 1 84 0
+  77              	 .cfi_startproc
+  78              	 
+  79              	 
+  80 0000 80B5     	 push {r7,lr}
+  81              	.LCFI5:
+  82              	 .cfi_def_cfa_offset 8
+  83              	 .cfi_offset 7,-8
+  84              	 .cfi_offset 14,-4
+  85 0002 82B0     	 sub sp,sp,#8
+  86              	.LCFI6:
+  87              	 .cfi_def_cfa_offset 16
+  88 0004 00AF     	 add r7,sp,#0
+  89              	.LCFI7:
+  90              	 .cfi_def_cfa_register 7
+  91 0006 7860     	 str r0,[r7,#4]
+  85:../Dave/Generated/FREERTOS/heap_3.h ****     if( pv )
+  92              	 .loc 1 85 0
+  93 0008 7B68     	 ldr r3,[r7,#4]
+  94 000a 002B     	 cmp r3,#0
+  95 000c 06D0     	 beq .L3
+  86:../Dave/Generated/FREERTOS/heap_3.h ****     {
+  87:../Dave/Generated/FREERTOS/heap_3.h ****         vTaskSuspendAll();
+  96              	 .loc 1 87 0
+  97 000e FFF7FEFF 	 bl vTaskSuspendAll
+  88:../Dave/Generated/FREERTOS/heap_3.h ****         {
+  89:../Dave/Generated/FREERTOS/heap_3.h ****             free( pv );
+  98              	 .loc 1 89 0
+  99 0012 7868     	 ldr r0,[r7,#4]
+ 100 0014 FFF7FEFF 	 bl free
+  90:../Dave/Generated/FREERTOS/heap_3.h ****             traceFREE( pv, 0 );
+  91:../Dave/Generated/FREERTOS/heap_3.h ****         }
+  92:../Dave/Generated/FREERTOS/heap_3.h ****         ( void ) xTaskResumeAll();
+ 101              	 .loc 1 92 0
+ 102 0018 FFF7FEFF 	 bl xTaskResumeAll
+ 103              	.L3:
+  93:../Dave/Generated/FREERTOS/heap_3.h ****     }
+  94:../Dave/Generated/FREERTOS/heap_3.h **** }
+ 104              	 .loc 1 94 0
+ 105 001c 0837     	 adds r7,r7,#8
+ 106              	.LCFI8:
+ 107              	 .cfi_def_cfa_offset 8
+ 108 001e BD46     	 mov sp,r7
+ 109              	.LCFI9:
+ 110              	 .cfi_def_cfa_register 13
+ 111              	 
+ 112 0020 80BD     	 pop {r7,pc}
+ 113              	 .cfi_endproc
+ 114              	.LFE139:
+ 116 0022 00BF     	 .text
+ 117              	.Letext0:
+ 118              	 .file 2 "c:\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 119              	 .file 3 "c:\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+ 120              	 .file 4 "c:\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\lib\\gcc\\arm-none-eabi\\4.9.3\\include\\stddef.h"
+ 121              	 .file 5 "C:/Workspaces/BachelorThesis/imu_test/Libraries/CMSIS/Include/cmsis_gcc.h"
+ 122              	 .file 6 "C:/Workspaces/BachelorThesis/imu_test/Libraries/CMSIS/Include/core_cm4.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 heap.c
+    {standard input}:20     .text.pvPortMalloc:00000000 $t
+    {standard input}:25     .text.pvPortMalloc:00000000 pvPortMalloc
+    {standard input}:69     .text.vPortFree:00000000 $t
+    {standard input}:74     .text.vPortFree:00000000 vPortFree
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+vTaskSuspendAll
+malloc
+xTaskResumeAll
+free

@@ -1,0 +1,100 @@
+   1              	 .syntax unified
+   2              	 .cpu cortex-m4
+   3              	 .eabi_attribute 27,3
+   4              	 .fpu fpv4-sp-d16
+   5              	 .eabi_attribute 20,1
+   6              	 .eabi_attribute 21,1
+   7              	 .eabi_attribute 23,3
+   8              	 .eabi_attribute 24,1
+   9              	 .eabi_attribute 25,1
+  10              	 .eabi_attribute 26,1
+  11              	 .eabi_attribute 30,6
+  12              	 .eabi_attribute 34,1
+  13              	 .eabi_attribute 18,4
+  14              	 .thumb
+  15              	 .file "ICM-42688-P.c"
+  16              	 .text
+  17              	.Ltext0:
+  18              	 .cfi_sections .debug_frame
+  19              	 .section .text.icm_42688_p,"ax",%progbits
+  20              	 .align 2
+  21              	 .global icm_42688_p
+  22              	 .thumb
+  23              	 .thumb_func
+  25              	icm_42688_p:
+  26              	.LFB366:
+  27              	 .file 1 "../source/ICM-42688-P/ICM-42688-P.c"
+   1:../source/ICM-42688-P/ICM-42688-P.c **** /******************************************************
+   2:../source/ICM-42688-P/ICM-42688-P.c ****  * This file contains the driver for ICM-42688-P 
+   3:../source/ICM-42688-P/ICM-42688-P.c ****  * 
+   4:../source/ICM-42688-P/ICM-42688-P.c ****  * 
+   5:../source/ICM-42688-P/ICM-42688-P.c ****  * 
+   6:../source/ICM-42688-P/ICM-42688-P.c ****  * 
+   7:../source/ICM-42688-P/ICM-42688-P.c ****  * 
+   8:../source/ICM-42688-P/ICM-42688-P.c ****  ******************************************************/
+   9:../source/ICM-42688-P/ICM-42688-P.c **** 
+  10:../source/ICM-42688-P/ICM-42688-P.c **** 
+  11:../source/ICM-42688-P/ICM-42688-P.c **** #include "ICM-42688-P.h"
+  12:../source/ICM-42688-P/ICM-42688-P.c **** 
+  13:../source/ICM-42688-P/ICM-42688-P.c **** void icm_42688_p(icm_42688_p_t * imu, SPI_MASTER_t *SPI_MASTER_sel)
+  14:../source/ICM-42688-P/ICM-42688-P.c **** {
+  28              	 .loc 1 14 0
+  29              	 .cfi_startproc
+  30              	 
+  31              	 
+  32              	 
+  33 0000 80B4     	 push {r7}
+  34              	.LCFI0:
+  35              	 .cfi_def_cfa_offset 4
+  36              	 .cfi_offset 7,-4
+  37 0002 83B0     	 sub sp,sp,#12
+  38              	.LCFI1:
+  39              	 .cfi_def_cfa_offset 16
+  40 0004 00AF     	 add r7,sp,#0
+  41              	.LCFI2:
+  42              	 .cfi_def_cfa_register 7
+  43 0006 7860     	 str r0,[r7,#4]
+  44 0008 3960     	 str r1,[r7]
+  15:../source/ICM-42688-P/ICM-42688-P.c ****     imu->SPI_Master = SPI_MASTER_sel;
+  45              	 .loc 1 15 0
+  46 000a 7B68     	 ldr r3,[r7,#4]
+  47 000c 3A68     	 ldr r2,[r7]
+  48 000e 1A60     	 str r2,[r3]
+  16:../source/ICM-42688-P/ICM-42688-P.c **** 
+  17:../source/ICM-42688-P/ICM-42688-P.c **** 
+  18:../source/ICM-42688-P/ICM-42688-P.c **** }
+  49              	 .loc 1 18 0
+  50 0010 0C37     	 adds r7,r7,#12
+  51              	.LCFI3:
+  52              	 .cfi_def_cfa_offset 4
+  53 0012 BD46     	 mov sp,r7
+  54              	.LCFI4:
+  55              	 .cfi_def_cfa_register 13
+  56              	 
+  57 0014 5DF8047B 	 ldr r7,[sp],#4
+  58              	.LCFI5:
+  59              	 .cfi_restore 7
+  60              	 .cfi_def_cfa_offset 0
+  61 0018 7047     	 bx lr
+  62              	 .cfi_endproc
+  63              	.LFE366:
+  65 001a 00BF     	 .text
+  66              	.Letext0:
+  67              	 .file 2 "c:\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\machine\\_default_types.h"
+  68              	 .file 3 "c:\\dave-ide-4.4.2-64bit\\eclipse\\arm-gcc-49\\arm-none-eabi\\include\\stdint.h"
+  69              	 .file 4 "C:/Workspaces/BachelorThesis/imu_test/Libraries/XMCLib/inc/xmc_gpio.h"
+  70              	 .file 5 "C:/Workspaces/BachelorThesis/imu_test/Libraries/XMCLib/inc/xmc4_gpio.h"
+  71              	 .file 6 "C:/Workspaces/BachelorThesis/imu_test/Libraries/XMCLib/inc/xmc_usic.h"
+  72              	 .file 7 "C:/Workspaces/BachelorThesis/imu_test/Libraries/XMCLib/inc/xmc_spi.h"
+  73              	 .file 8 "C:/Workspaces/BachelorThesis/imu_test/Dave/Generated/SPI_MASTER/spi_master.h"
+  74              	 .file 9 "../source/ICM-42688-P/ICM-42688-P.h"
+  75              	 .file 10 "C:/Workspaces/BachelorThesis/imu_test/Libraries/CMSIS/Include/cmsis_gcc.h"
+  76              	 .file 11 "C:/Workspaces/BachelorThesis/imu_test/Libraries/CMSIS/Include/core_cm4.h"
+  77              	 .file 12 "C:/Workspaces/BachelorThesis/imu_test/Libraries/CMSIS/Infineon/XMC4300_series/Include/system_XMC4300.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 ICM-42688-P.c
+    {standard input}:20     .text.icm_42688_p:00000000 $t
+    {standard input}:25     .text.icm_42688_p:00000000 icm_42688_p
+                     .debug_frame:00000010 $d
+
+NO UNDEFINED SYMBOLS
