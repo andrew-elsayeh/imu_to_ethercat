@@ -21,4 +21,4 @@ P1.5, P0.6, P3.6, P1.14, P0.8, P2.8, P2.9, P2.7, P5.0, P0.9, P5.0, P0.9, P0.7, P
 
 The rest (P14.0 to 14.4) cannot be used as a chip select.
 
-![image-20210606140218361](C:\Workspaces\BachelorThesis\imu_test\available_gpios.png)
+![image-20210606140218361](./available_gpios.png)
